@@ -29,6 +29,8 @@ public class ContacInfo {
     @Column(name = "student_id") //para identicar que tendra los valores de los id de los estudiantes
     private int id;
 
+    //COLUMNAS
+
     @Column(name = "email",nullable = false)
     private String email;
 
