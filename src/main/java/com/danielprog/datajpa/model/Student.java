@@ -1,11 +1,28 @@
 package com.danielprog.datajpa.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "student")
+@Getter
+@Setter
 public class Student {
+
+    public Student(){
+
+    }
+
+    public Student(int id, String nombre, String apellido, LocalDate fechaCumpleaños) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaCumpleaños = fechaCumpleaños;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "student_generator")
     @SequenceGenerator(name = "student_generator",allocationSize = 1)
@@ -20,5 +37,13 @@ public class Student {
     @Column(name = "fechaCumpleaños",nullable = false)
     private LocalDate fechaCumpleaños;
 
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", fechaCumpleaños=" + fechaCumpleaños +
+                '}';
+    }
 }
