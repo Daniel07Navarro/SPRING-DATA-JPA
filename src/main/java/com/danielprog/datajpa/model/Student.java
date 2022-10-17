@@ -1,5 +1,7 @@
 package com.danielprog.datajpa.model;
 
+
+import com.danielprog.datajpa.model.embedded_id.StudentCourse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,12 +45,24 @@ public class Student {
     @PrimaryKeyJoinColumn // para indicar que la llave primaria de student va a ser usada para los valores de la llave foranea contact into
     ContacInfo contacInfo;
 
+    /*
     @ManyToMany
     @JoinTable(name = "student_course", //nombre de la tabla nueva
                 joinColumns = @JoinColumn(name = "student_id"), //definimos el nombre de la columna que almacena la llave primaria de la entidad propietaria
                 inverseJoinColumns = @JoinColumn(name = "course_id")) //se define lo mismo que en el join column solo que para la otra entidad
     private Set<Course> courses = new HashSet<>();
+    */
 
+    /*
+    //ID CLASS
+    @OneToMany(mappedBy = "student")
+    private Set<StudentCourse> studentCourses = new HashSet<>();
+    */
+
+
+    //Embedded
+    @OneToMany(mappedBy = "student")
+    private Set<StudentCourse> courseStudent = new HashSet<>();
 
     @Override
     public String toString() {

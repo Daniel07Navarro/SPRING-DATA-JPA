@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "contac_info")
+@Table(name = "contact_info")
 public class ContacInfo {
 
     public ContacInfo(int id, String email, String numero, String direccion, String ciudad, String estado, String zip, Student student) {
@@ -24,6 +24,7 @@ public class ContacInfo {
         this.student = student;
     }
 
+    //Esto hace que compartan una llave primaria
     @Id
     @Column(name = "student_id") //para identicar que tendra los valores de los id de los estudiantes
     private int id;

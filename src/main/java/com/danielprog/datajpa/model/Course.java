@@ -1,5 +1,7 @@
 package com.danielprog.datajpa.model;
 
+
+import com.danielprog.datajpa.model.embedded_id.StudentCourse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,12 +24,25 @@ public class Course {
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
+    //RELACION DE CURSOS CON INSTRUCTOR
     @ManyToOne(fetch = FetchType.EAGER) //todos los datos deben ser obtenidos inmediatamente
     private Instructor instructor;
 
-    //AGREGAMOS UNA COLECCION
+    /*
+    //RELACION CURSOS ESTUDIANTE
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students = new HashSet<>();
+    */
+
+    /*
+    //id class
+    @OneToMany(mappedBy = "course",fetch = FetchType.EAGER)
+    private Set<StudentCourse> studentCourses = new HashSet<>();
+    */
+
+    //EmbeddedId
+    @OneToMany(mappedBy = "course")
+    private Set<StudentCourse> studentCourses = new HashSet<>();
 
     @Override
     public String toString() {
