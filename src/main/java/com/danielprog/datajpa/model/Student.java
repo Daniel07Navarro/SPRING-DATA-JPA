@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
@@ -36,6 +38,17 @@ public class Student {
 
     @Column(name = "fechaCumpleaños",nullable = false)
     private LocalDate fechaCumpleaños;
+
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn // para indicar que la llave primaria de student va a ser usada para los valores de la llave foranea contact into
+    ContacInfo contacInfo;
+
+    @ManyToMany
+    @JoinTable(name = "student_course", //nombre de la tabla nueva
+                joinColumns = @JoinColumn(name = "student_id"), //definimos el nombre de la columna que almacena la llave primaria de la entidad propietaria
+                inverseJoinColumns = @JoinColumn(name = "course_id")) //se define lo mismo que en el join column solo que para la otra entidad
+    private Set<Course> courses = new HashSet<>();
+
 
     @Override
     public String toString() {
