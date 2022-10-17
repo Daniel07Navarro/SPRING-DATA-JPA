@@ -20,11 +20,11 @@ public class Student {
 
     }
 
-    public Student(int id, String nombre, String apellido, LocalDate fechaCumpleaños) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fechaCumpleaños = fechaCumpleaños;
+    public Student(String firstName, String lastName, LocalDate birthday) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthday;
+        this.age = birthday.until(LocalDate.now()).getYears();
     }
 
     @Id
@@ -32,18 +32,28 @@ public class Student {
     @SequenceGenerator(name = "student_generator",allocationSize = 1)
     private int id;
 
-    @Column(name = "nombre",nullable = false) //por defecto el tamaño es 255 y con nullable verificamos si acepta o no elementos nulos
-    private String nombre;
+    @Column(name = "first_name", nullable = false) //por defecto el tamaño es 255 y con nullable verificamos si acepta o no elementos nulos
+    private String firstName;
 
-    @Column(name = "apellido",nullable = false)
-    private String apellido;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-    @Column(name = "fechaCumpleaños",nullable = false)
-    private LocalDate fechaCumpleaños;
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
 
+    @Transient
+    private int age;
+
+    /* MEDIANTE UNA LLAVE FORANEA
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    private ContacInfo contacInfo;
+    */
+
+
+    //relacion que tiene con contac info compartiendo una llave primaria
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn // para indicar que la llave primaria de student va a ser usada para los valores de la llave foranea contact into
-    ContacInfo contacInfo;
+            ContactInfo contactInfo;
 
     /*
     @ManyToMany
@@ -68,9 +78,9 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", fechaCumpleaños=" + fechaCumpleaños +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }

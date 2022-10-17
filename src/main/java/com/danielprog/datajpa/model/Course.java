@@ -21,8 +21,8 @@ public class Course {
     @SequenceGenerator(name = "course_generator",allocationSize = 1)
     private int id;
 
-    @Column(name = "nombre",nullable = false)
-    private String nombre;
+    @Column(name = "name",nullable = false)
+    private String name;
 
     //RELACION DE CURSOS CON INSTRUCTOR
     @ManyToOne(fetch = FetchType.EAGER) //todos los datos deben ser obtenidos inmediatamente
@@ -48,7 +48,7 @@ public class Course {
     public String toString() {
         return "Course{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

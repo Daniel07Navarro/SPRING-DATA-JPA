@@ -15,10 +15,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Instructor {
 
-    public Instructor(int id, String nombre, String apellido) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Instructor(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @Id
@@ -26,11 +25,11 @@ public class Instructor {
     @SequenceGenerator(name = "instructor_generator",allocationSize = 1)
     private int id;
 
-    @Column(name = "nombre",nullable = false)
-    private String nombre;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(name = "apellido",nullable = false)
-    private String apellido;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     //Un solo instructor puede dar clases de muchos cursos
     @OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL)
@@ -40,8 +39,9 @@ public class Instructor {
     public String toString() {
         return "Instructor{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
+
 }
