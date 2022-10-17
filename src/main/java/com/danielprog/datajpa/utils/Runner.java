@@ -34,8 +34,8 @@ public class Runner implements CommandLineRunner {
 
         //USANDO LAS CONSULTAS PERSONALIZADAS (QUERY)
         //USANDO @Query
-        studentRepository.findByFirstName("Leora").forEach(System.out::println);
-        studentRepository.findByFirstNameLike("ri").forEach(System.out::println);
+        //studentRepository.findByFirstName("Leora").forEach(System.out::println);
+        //studentRepository.findByFirstNameLike("ri").forEach(System.out::println);
 
         //studentRepository.findByNameNative("Dari").forEach(System.out::println);
         //studentRepository.findByNameApellido("Leora","Tutill").forEach(System.out::println);
