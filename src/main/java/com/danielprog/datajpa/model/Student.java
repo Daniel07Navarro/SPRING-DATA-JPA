@@ -2,6 +2,7 @@ package com.danielprog.datajpa.model;
 
 
 import com.danielprog.datajpa.model.embedded_id.StudentCourse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,7 +50,7 @@ public class Student {
     private ContacInfo contacInfo;
     */
 
-
+    @JsonIgnore
     //relacion que tiene con contac info compartiendo una llave primaria
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn // para indicar que la llave primaria de student va a ser usada para los valores de la llave foranea contact into
@@ -71,6 +72,7 @@ public class Student {
 
 
     //Embedded
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private Set<StudentCourse> courseStudent = new HashSet<>();
 

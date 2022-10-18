@@ -1,5 +1,6 @@
 package com.danielprog.datajpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,6 +50,7 @@ public class ContactInfo {
     @Column(name = "zip",nullable = false)
     private String zip;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL,optional = false)
     @MapsId //Para indicar que los valores seran copiados de la llave primaria de student
     @JoinColumn(name = "student_id") //nombre de la llave foranea

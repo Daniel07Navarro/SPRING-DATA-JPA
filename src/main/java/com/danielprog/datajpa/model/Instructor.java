@@ -1,5 +1,6 @@
 package com.danielprog.datajpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +33,7 @@ public class Instructor {
     private String lastName;
 
     //Un solo instructor puede dar clases de muchos cursos
+    @JsonIgnore
     @OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL)
     private Set<Course> courses = new HashSet<>(); //almacena todos los cursos que va a impartir el instructor
 

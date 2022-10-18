@@ -2,6 +2,7 @@ package com.danielprog.datajpa.model;
 
 
 import com.danielprog.datajpa.model.embedded_id.StudentCourse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class Course {
     private String name;
 
     //RELACION DE CURSOS CON INSTRUCTOR
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER) //todos los datos deben ser obtenidos inmediatamente
     private Instructor instructor;
 
@@ -41,6 +43,7 @@ public class Course {
     */
 
     //EmbeddedId
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private Set<StudentCourse> studentCourses = new HashSet<>();
 

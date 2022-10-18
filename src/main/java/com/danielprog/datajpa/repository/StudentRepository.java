@@ -1,16 +1,20 @@
 package com.danielprog.datajpa.repository;
 
 import com.danielprog.datajpa.model.Student;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
+@Qualifier("studentRepository")
 public interface StudentRepository extends JpaRepository<Student,Integer> {
 
     //POR DEFECTO TOMA LOS PARAMETROS EN EL ORDEN EN QUE SE PRESENTAN

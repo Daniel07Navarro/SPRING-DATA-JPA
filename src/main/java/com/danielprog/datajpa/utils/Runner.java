@@ -77,12 +77,13 @@ public class Runner implements CommandLineRunner {
 
         pageable = Pageable.unpaged();
         */
-
+        /*
         var result = courseRepository.findByInstructor_Id(1);
         System.out.println(result);
         for (var course:result){
             System.out.println(course.getName()+ " -> Instructor" +course.getInstructorName()+ " -> Students "+ course.getStudentCount());
         }
+        */
     }
 
 }
